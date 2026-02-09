@@ -1,19 +1,19 @@
 # Brazilian E-Commerce Data Warehouse & ETL Pipeline
 
-## 📊 Project Overview
+##  Project Overview
 End-to-end ETL pipeline and data warehouse implementation for analyzing Brazilian e-commerce operations. This project demonstrates data engineering best practices including data quality assessment, dimensional modeling, and advanced SQL analytics.
 
-## 🎯 Business Objective
+##  Business Objective
 Build a scalable data warehouse solution to analyze customer behavior, sales trends, and operational efficiency for a Brazilian e-commerce platform serving 99,000+ customers across multiple states.
 
-## 🛠️ Technologies Used
+##  Technologies Used
 - **Database:** PostgreSQL 18
 - **ETL Tools:** SQL (COPY commands, custom transformations)
 - **Version Control:** Git & GitHub
 - **Data Volume:** 1.5M+ records across 9 tables
 - **Dataset Source:** [Olist Brazilian E-Commerce Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
-## 📁 Project Structure
+##  Project Structure
 ```
 Brazilian-Ecommerce-Data-Warehouse-ETL/
 ├── README.md                          # Project documentation
@@ -29,7 +29,7 @@ Brazilian-Ecommerce-Data-Warehouse-ETL/
 └── Dataset/                           # Raw CSV files (9 files)
 ```
 
-## 📊 Dataset Overview
+##  Dataset Overview
 The Olist dataset contains real Brazilian e-commerce data with:
 - **99,441** customers
 - **99,441** orders (2016-2018)
@@ -40,7 +40,7 @@ The Olist dataset contains real Brazilian e-commerce data with:
 - **99,224** customer reviews
 - **1,000,163** geolocation records
 
-## 🏗️ ETL Pipeline Architecture
+##  ETL Pipeline Architecture
 
 ### Phase 1: Data Ingestion
 - Created staging schema for raw data isolation
@@ -59,23 +59,23 @@ Comprehensive quality checks performed across 1.5M+ records:
 
 | Category | Check | Result | Verdict | Notes |
 |----------|-------|--------|---------|-------|
-| **NULL Analysis** | Critical ID columns | 0% NULLs | ✅ Pass | Core identifiers complete |
-| **Duplicates** | Duplicate customer_id | None | ✅ Pass | Safe primary key |
-| **Duplicates** | Duplicate order_id | None | ✅ Pass | Orders uniquely identified |
-| **Consistency** | Multiple accounts per person | Present | 🟡 Expected | Business pattern |
-| **Referential Integrity** | Orders without customers | 0 | ✅ Pass | No orphans |
-| **Referential Integrity** | Items without orders | 0 | ✅ Pass | Transaction chain intact |
-| **Referential Integrity** | Items with missing products | 0 | ✅ Pass | Product catalog complete |
-| **Referential Integrity** | Items with missing sellers | 0 | ✅ Pass | Seller dimension complete |
-| **Invalid Values** | Negative prices | 0 | ✅ Pass | No corrupted financial data |
-| **Invalid Values** | Negative freight | 0 | ✅ Pass | Freight costs valid |
-| **Invalid Values** | Zero prices | 0 | ✅ Pass | No mispriced items |
-| **Temporal Integrity** | Future purchase dates | 0 | ✅ Pass | No impossible timestamps |
-| **Temporal Integrity** | Delivery before purchase | 0 | ✅ Pass | Chronologically consistent |
-| **Review Validity** | Scores outside 1-5 | 0 | ✅ Pass | Customer feedback clean |
-| **Completeness** | Products with complete specs | 98.15% | 🟢 High | Minor gaps, imputable |
-| **Completeness** | Complete customer addresses | 100% | ✅ Perfect | Geo analysis supported |
-| **Completeness** | Orders with all timestamps | 97% | 🟢 High | Missing due to cancellations |
+| **NULL Analysis** | Critical ID columns | 0% NULLs |  Pass | Core identifiers complete |
+| **Duplicates** | Duplicate customer_id | None |  Pass | Safe primary key |
+| **Duplicates** | Duplicate order_id | None |  Pass | Orders uniquely identified |
+| **Consistency** | Multiple accounts per person | Present |  Expected | Business pattern |
+| **Referential Integrity** | Orders without customers | 0 |  Pass | No orphans |
+| **Referential Integrity** | Items without orders | 0 |  Pass | Transaction chain intact |
+| **Referential Integrity** | Items with missing products | 0 |  Pass | Product catalog complete |
+| **Referential Integrity** | Items with missing sellers | 0 |  Pass | Seller dimension complete |
+| **Invalid Values** | Negative prices | 0 |  Pass | No corrupted financial data |
+| **Invalid Values** | Negative freight | 0 |  Pass | Freight costs valid |
+| **Invalid Values** | Zero prices | 0 |  Pass | No mispriced items |
+| **Temporal Integrity** | Future purchase dates | 0 |  Pass | No impossible timestamps |
+| **Temporal Integrity** | Delivery before purchase | 0 |  Pass | Chronologically consistent |
+| **Review Validity** | Scores outside 1-5 | 0 |  Pass | Customer feedback clean |
+| **Completeness** | Products with complete specs | 98.15% |  High | Minor gaps, imputable |
+| **Completeness** | Complete customer addresses | 100% |  Perfect | Geo analysis supported |
+| **Completeness** | Orders with all timestamps | 97% |  High | Missing due to cancellations |
 
 *(Run 03_data_quality_checks.sql)*
 
@@ -120,12 +120,12 @@ Implemented enterprise-grade **Star Schema** for optimal analytical performance:
   - Optimized with indexes on all foreign keys
 
 **Design Features:**
-- ✅ Surrogate keys (SERIAL) for all dimensions
-- ✅ SCD Type 2 ready (valid_from, valid_to, is_current)
-- ✅ Degenerate dimensions (order_id in fact table)
-- ✅ Derived attributes (size_category, weight_category)
-- ✅ Performance indexes on all join columns
-- ✅ Business-friendly naming conventions
+-  Surrogate keys (SERIAL) for all dimensions
+-  SCD Type 2 ready (valid_from, valid_to, is_current)
+-  Degenerate dimensions (order_id in fact table)
+-  Derived attributes (size_category, weight_category)
+-  Performance indexes on all join columns
+-  Business-friendly naming conventions
 
 **Key Metrics from Data Warehouse:**
 - Average order value: R$ 120.57
@@ -133,21 +133,21 @@ Implemented enterprise-grade **Star Schema** for optimal analytical performance:
 - On-time delivery rate: 91.89%
 - Active customer base: 98,666 unique customers
 - Product catalog: 32,951 active SKUs
-### Phase 5: Business Analytics (Planned 📋)
+### Phase 5: Business Analytics (Planned )
 - Customer segmentation (RFM analysis)
 - Sales trend analysis
 - Product performance metrics
 - Seller analytics
 - Delivery performance tracking
 
-## 💡 Business Insights (Coming Soon)
+##  Business Insights (Coming Soon)
 - Geographic distribution of customers
 - Top performing product categories
 - Payment method preferences
 - Seasonal sales patterns
 - Customer lifetime value analysis
 
-## 🚀 How to Run This Project
+##  How to Run This Project
 
 ### Prerequisites
 - PostgreSQL 12+ installed
@@ -183,16 +183,16 @@ CREATE DATABASE olist_ecommerce;
    - Edit `02_import_csv_data.sql`
    - Update CSV file paths to match your local directory
 
-## 📈 Project Status
+##  Project Status
 
-- [x] Phase 1: Data Ingestion
-- [x] Phase 2: Data Quality Assessment
-- [ ] Phase 3: Data Cleaning & Transformation
-- [ ] Phase 4: Data Warehouse Design
-- [ ] Phase 5: Business Analytics
-- [ ] Phase 6: Documentation & Visualization
+- [x] Phase 1: Data Ingestion (1.5M records imported)
+- [x] Phase 2: Data Quality Assessment (99.95% data quality)
+- [x] Phase 3: Data Cleaning & Transformation (823 invalid records removed)
+- [x] Phase 4: Data Warehouse Design (Star Schema - 5 dimensions + 1 fact)
+- [ ] Phase 5: Business Analytics & Insights
+- [ ] Phase 6: Visualization & Final Documentation
 
-## 🎓 Skills Demonstrated
+##  Skills Demonstrated
 - **SQL Proficiency:** Complex queries, CTEs, window functions, aggregations
 - **Data Quality:** Comprehensive validation and cleansing strategies
 - **ETL Design:** Staging layer, transformation logic, error handling
@@ -200,7 +200,7 @@ CREATE DATABASE olist_ecommerce;
 - **Problem Solving:** Handling real-world messy data
 - **Documentation:** Clear code comments and project documentation
 
-## 📝 Future Enhancements
+##  Future Enhancements
 - [ ] Implement stored procedures for automation
 - [ ] Create views for business users
 - [ ] Add incremental data loading
@@ -208,22 +208,22 @@ CREATE DATABASE olist_ecommerce;
 - [ ] Implement data lineage tracking
 - [ ] Add unit tests for transformations
 
-## 👤 Author
+##  Author
 **Jannathul Firdouz Sahul Hameed**
 - GitHub: [@jannathulfirdouz](https://github.com/jannathulfirdouz)
 - LinkedIn: [Add your LinkedIn]
 - Email: [Add your email]
 
-## 📄 License
+##  License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 - Dataset provided by [Olist](https://olist.com/) via Kaggle
 - Brazilian e-commerce market insights
 - PostgreSQL community for excellent documentation
 
 ---
 
-**⭐ If you found this project helpful, please consider giving it a star!**
+** If you found this project helpful, please consider giving it a star!**
 
 *Last Updated: February 2026*
