@@ -334,7 +334,6 @@ FROM information_schema.tables
 WHERE table_schema = 'cleaned'
 ORDER BY table_name;
 
-
 -- =====================================================
 -- SECTION 8: FINAL VERIFICATION & SUMMARY
 -- =====================================================
