@@ -42,7 +42,7 @@ The Olist dataset contains real Brazilian e-commerce data with:
 
 ## 🏗️ ETL Pipeline Architecture
 
-### Phase 1: Data Ingestion (Completed ✅)
+### Phase 1: Data Ingestion
 - Created staging schema for raw data isolation
 - Loaded 9 CSV files into PostgreSQL using COPY commands
 - Preserved original data types and formats
@@ -52,50 +52,10 @@ The Olist dataset contains real Brazilian e-commerce data with:
 
 Comprehensive quality checks performed across 1.5M+ records:
 
-** Data Integrity (Perfect):**
-- Zero duplicate records across all primary keys
-- 100% referential integrity - no orphan records
-- All financial data valid (no negative prices/freight)
-- All timestamps chronologically consistent
-- Review scores within valid range (1-5)
-
-**  High Data Quality:**
-- 98.15% products with complete specifications
-- 100% customers with complete addresses  
-- 97% orders with complete timestamps
-- Valid order statuses across all records
-
-**  Minor Issues (Expected):**
-- 81.85% products missing category names (610 products need "Unknown" category)
-- 88.34% reviews missing comment titles (optional field - expected)
-- 3% orders missing delivery dates (cancelled/pending orders - expected)
-- Multiple customer accounts per person detected (business pattern - valid)
-
-**Verdict:** Dataset is exceptionally clean with minimal cleaning required.
-
-### Phase 3: Data Cleaning & Transformation (In Progress 🔄)
-- Handle NULL values (imputation strategies)
-- Remove duplicates
-- Standardize data formats
-- Create business rules for data validation
-
-### Phase 4: Data Warehouse Design (Planned 📋)
-- Implement star schema with fact and dimension tables
-- Create surrogate keys
-- Build slowly changing dimensions (SCD Type 2)
-- Optimize with indexes and partitioning
-
-### Phase 5: Business Analytics (Planned 📋)
-- Customer segmentation (RFM analysis)
-- Sales trend analysis
-- Product performance metrics
-- Seller analytics
-- Delivery performance tracking
-
-## 🔍 Key Data Quality Findings
+## Key Data Quality Findings
 
 ### Critical Issues Identified:
-## 🔍 Detailed Data Quality Assessment Results
+## Detailed Data Quality Assessment Results
 
 | Category | Check | Result | Verdict | Notes |
 |----------|-------|--------|---------|-------|
@@ -118,6 +78,67 @@ Comprehensive quality checks performed across 1.5M+ records:
 | **Completeness** | Orders with all timestamps | 97% | 🟢 High | Missing due to cancellations |
 
 *(Run 03_data_quality_checks.sql)*
+
+**Verdict:** Dataset is exceptionally clean with minimal cleaning required.
+
+### Phase 3: Data Cleaning & Transformation
+- Handle NULL values (imputation strategies)
+- Remove duplicates
+- Standardize data formats
+- Create business rules for data validation
+
+### Phase 4: Data Warehouse Design 
+
+Implemented enterprise-grade **Star Schema** for optimal analytical performance:
+
+**Architecture Overview:**
+```
+                    dim_date (1,096 dates)
+                         |
+                         |
+    dim_customers ---- FACT_SALES ---- dim_products
+    (99,441)          (112,960)         (32,951)
+                         |
+                         |
+    dim_sellers ---- dim_order_status
+    (3,095)              (8)
+```
+
+**Dimension Tables:**
+- **dim_date**: Complete date dimension (2016-2018) with year, quarter, month, week, day attributes
+- **dim_customers**: Customer master with geographic attributes (27 states)
+- **dim_products**: Product catalog with 72 categories, size/weight classifications, volume calculations
+- **dim_sellers**: Seller directory across 23 Brazilian states
+- **dim_order_status**: Order status lookup with completion/cancellation flags
+
+**Fact Table:**
+- **fact_sales**: Grain = One order item
+  - 112,960 sales transactions
+  - R$ 15.87M total revenue
+  - Links to all 5 dimension tables
+  - Includes measures: price, freight, payment, review score, delivery metrics
+  - Optimized with indexes on all foreign keys
+
+**Design Features:**
+- ✅ Surrogate keys (SERIAL) for all dimensions
+- ✅ SCD Type 2 ready (valid_from, valid_to, is_current)
+- ✅ Degenerate dimensions (order_id in fact table)
+- ✅ Derived attributes (size_category, weight_category)
+- ✅ Performance indexes on all join columns
+- ✅ Business-friendly naming conventions
+
+**Key Metrics from Data Warehouse:**
+- Average order value: R$ 120.57
+- Average delivery time: 12 days
+- On-time delivery rate: 91.89%
+- Active customer base: 98,666 unique customers
+- Product catalog: 32,951 active SKUs
+### Phase 5: Business Analytics (Planned 📋)
+- Customer segmentation (RFM analysis)
+- Sales trend analysis
+- Product performance metrics
+- Seller analytics
+- Delivery performance tracking
 
 ## 💡 Business Insights (Coming Soon)
 - Geographic distribution of customers
