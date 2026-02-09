@@ -280,39 +280,59 @@ FROM cleaned.order_payments;
 -- SECTION 7: CLEAN ORDER REVIEWS TABLE
 -- =====================================================
 
+-- Fix for order_reviews with duplicates
 DROP TABLE IF EXISTS cleaned.order_reviews CASCADE;
 
 CREATE TABLE cleaned.order_reviews AS
-SELECT 
+SELECT DISTINCT ON (review_id)  -- Keep only first occurrence of each review_id
     review_id::VARCHAR(50) as review_id,
     order_id::VARCHAR(50) as order_id,
     review_score::INTEGER as score,
-    -- Handle NULL review titles/messages
     COALESCE(NULLIF(TRIM(review_comment_title), ''), 'No Title') as title,
     COALESCE(NULLIF(TRIM(review_comment_message), ''), 'No Comment') as comment,
     review_creation_date as created_at,
     review_answer_timestamp as answered_at,
-    -- Calculate if review was answered
     CASE WHEN review_answer_timestamp IS NOT NULL THEN TRUE ELSE FALSE END as was_answered,
     CURRENT_TIMESTAMP as cleaned_at
 FROM staging.order_reviews
 WHERE review_id IS NOT NULL
   AND order_id IS NOT NULL
-  AND review_score BETWEEN 1 AND 5;  -- Ensure valid scores only
+  AND review_score BETWEEN 1 AND 5
+ORDER BY review_id, review_creation_date DESC;  -- Keep most recent if duplicate
 
 ALTER TABLE cleaned.order_reviews ADD PRIMARY KEY (review_id);
 CREATE INDEX idx_reviews_order ON cleaned.order_reviews(order_id);
 CREATE INDEX idx_reviews_score ON cleaned.order_reviews(score);
 
--- Verify
-SELECT 
-    'order_reviews' as table_name,
-    COUNT(*) as total_reviews,
-    ROUND(AVG(score), 2) as avg_rating,
-    ROUND(100.0 * SUM(CASE WHEN was_answered THEN 1 ELSE 0 END) / COUNT(*), 2) 
-        as answered_pct
-FROM cleaned.order_reviews;
+DROP TABLE IF EXISTS cleaned.products CASCADE;
 
+CREATE TABLE cleaned.products AS
+SELECT 
+    p.product_id,
+    COALESCE(p.product_category_name, 'unknown') as category_name_pt,
+    COALESCE(t.product_category_name_english, 'Unknown') as category_name_en,
+    COALESCE(p.product_name_lenght, 40) as name_length,
+    COALESCE(p.product_description_lenght, 500) as description_length,
+    COALESCE(p.product_photos_qty, 1) as photos_count,
+    COALESCE(p.product_weight_g, 700) as weight_g,
+    COALESCE(p.product_length_cm, 20) as length_cm,
+    COALESCE(p.product_height_cm, 10) as height_cm,
+    COALESCE(p.product_width_cm, 15) as width_cm,
+    COALESCE(p.product_length_cm, 20) * COALESCE(p.product_height_cm, 10) * COALESCE(p.product_width_cm, 15) as volume_cm3,
+    CURRENT_TIMESTAMP as cleaned_at
+FROM staging.products p
+LEFT JOIN staging.product_category_translation t ON p.product_category_name = t.product_category_name
+WHERE p.product_id IS NOT NULL;
+
+ALTER TABLE cleaned.products ADD PRIMARY KEY (product_id);
+CREATE INDEX idx_products_category ON cleaned.products(category_name_en);
+
+SELECT COUNT(*) as total_products FROM cleaned.products;
+
+SELECT table_name 
+FROM information_schema.tables 
+WHERE table_schema = 'cleaned'
+ORDER BY table_name;
 
 -- =====================================================
 -- SECTION 8: FINAL VERIFICATION & SUMMARY
