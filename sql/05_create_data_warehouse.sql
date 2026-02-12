@@ -451,10 +451,3 @@ LIMIT 20;
 */
 
 
--- =====================================================
--- NEXT STEPS:
--- - Save this as: 05_create_data_warehouse.sql
--- - Execute to build star schema
--- - Verify all tables populated
--- - Move to Part 6: Advanced Analytics
--- =====================================================
