@@ -7,7 +7,7 @@
 
 ---
 
-## 📊 Executive Summary
+##  Executive Summary
 
 ### Key Performance Indicators
 
@@ -22,26 +22,26 @@
 | **Average Review Score** | 4.04/5 | High satisfaction |
 
 ### Critical Finding
-⚠️ **Customer Retention Issue:** Average of 1 order per customer indicates low repeat purchase rate. This is the #1 priority for business growth.
+  **Customer Retention Issue:** Average of 1 order per customer indicates low repeat purchase rate. This is the #1 priority for business growth.
 
 ---
 
-## 👥 Customer Analytics
+##  Customer Analytics
 
 ### 1. RFM Segmentation Results
 
 | Segment | Customers | Avg Revenue/Customer | Total Revenue | % of Revenue |
 |---------|-----------|---------------------|---------------|--------------|
-| **At Risk** 🔴 | 23,194 | R$ 237 | R$ 5,502,348 | **34.7%** |
-| **Champions** 🏆 | 16,267 | R$ 297 | R$ 4,833,450 | **30.5%** |
-| **Loyal Customers** ✅ | 19,738 | R$ 172 | R$ 3,400,960 | 21.4% |
-| **Lost Customers** ❌ | 16,273 | R$ 55 | R$ 892,010 | 5.6% |
-| **New Customers** 🌱 | 15,224 | R$ 54 | R$ 820,564 | 5.2% |
+| **At Risk**  | 23,194 | R$ 237 | R$ 5,502,348 | **34.7%** |
+| **Champions**  | 16,267 | R$ 297 | R$ 4,833,450 | **30.5%** |
+| **Loyal Customers**  | 19,738 | R$ 172 | R$ 3,400,960 | 21.4% |
+| **Lost Customers**  | 16,273 | R$ 55 | R$ 892,010 | 5.6% |
+| **New Customers**  | 15,224 | R$ 54 | R$ 820,564 | 5.2% |
 
 **Key Insights:**
-- 🚨 **"At Risk" customers are the largest segment (34.7% of revenue)** - immediate retention campaign needed
-- 🏆 Champions have highest value (R$297 avg) but represent only 30.5% of revenue
-- ❌ Lost + New customers represent only 10.8% of revenue - need better onboarding
+-  **"At Risk" customers are the largest segment (34.7% of revenue)** - immediate retention campaign needed
+-  Champions have highest value (R$297 avg) but represent only 30.5% of revenue
+-  Lost + New customers represent only 10.8% of revenue - need better onboarding
 
 **Recommended Actions:**
 1. Launch retention campaign for "At Risk" segment (23,194 customers)
@@ -71,7 +71,7 @@
 |--------|---------------------|----------------|
 | **Late 2016** | 3-308 | Startup phase |
 | **Early 2017** | 789-3,660 | Rapid growth (3-5x MoM) |
-| **Nov 2017** | **7,451** | 🚀 **Black Friday spike** |
+| **Nov 2017** | **7,451** |  **Black Friday spike** |
 | **2018** | 6,000-7,200 | Stable growth |
 
 **Key Insights:**
@@ -81,14 +81,14 @@
 
 ---
 
-## 💰 Revenue Analytics
+##  Revenue Analytics
 
 ### 1. Monthly Revenue Trends
 
 **Best Performing Months:**
-- 🥇 **November 2017:** R$ 1,182,653 (+53.53% growth) - Black Friday
-- 🥈 **March 2018:** R$ 1,156,973 (+16.70%)
-- 🥉 **April 2018:** R$ 1,159,728 (+0.24%)
+-  **November 2017:** R$ 1,182,653 (+53.53% growth) - Black Friday
+-  **March 2018:** R$ 1,156,973 (+16.70%)
+-  **April 2018:** R$ 1,159,728 (+0.24%)
 
 **Seasonal Patterns:**
 - Q4 surge every year (October-December)
@@ -107,11 +107,11 @@
 
 | Day | Orders | Revenue | Strategy |
 |-----|--------|---------|----------|
-| **Monday** 👑 | 16,068 | R$ 2,603,933 | Best day for launches |
+| **Monday**  | 16,068 | R$ 2,603,933 | Best day for launches |
 | Tuesday | 15,831 | R$ 2,537,450 | Strong follow-up |
 | Wednesday | 15,425 | R$ 2,471,538 | Mid-week steady |
 | Friday | 14,002 | R$ 2,286,863 | Highest AOV (R$142) |
-| **Saturday** 📉 | 10,813 | R$ 1,756,100 | Lowest performance |
+| **Saturday**  | 10,813 | R$ 1,756,100 | Lowest performance |
 
 **Insights:**
 - Weekdays generate 77% of revenue
@@ -125,40 +125,40 @@
 
 ---
 
-## 🛍️ Product Analytics
+##  Product Analytics
 
 ### 1. Top Revenue Categories
 
 | Rank | Category | Revenue | Avg Price | Rating | Market Share |
 |------|----------|---------|-----------|--------|--------------|
-| 🥇 | Health & Beauty | R$ 1,444,254 | R$ 130 | ⭐ 4.14 | 8.59% |
-| 🥈 | Watches & Gifts | R$ 1,305,934 | R$ 201 | ⭐ 4.02 | 5.31% |
-| 🥉 | Bed/Bath/Table | R$ 1,248,801 | R$ 93 | ⭐ 3.90 | 9.90% |
+| 1 | Health & Beauty | R$ 1,444,254 | R$ 130 | ⭐ 4.14 | 8.59% |
+| 2 | Watches & Gifts | R$ 1,305,934 | R$ 201 | ⭐ 4.02 | 5.31% |
+| 3 | Bed/Bath/Table | R$ 1,248,801 | R$ 93 | ⭐ 3.90 | 9.90% |
 | 4 | Sports & Leisure | R$ 1,160,003 | R$ 114 | ⭐ 4.11 | 7.67% |
 | 5 | Computer Accessories | R$ 1,062,725 | R$ 116 | ⭐ 3.94 | 6.95% |
 
 **Key Insights:**
-- 💄 Health & Beauty: Best overall (highest revenue + rating)
-- 💎 Watches/Gifts: Premium segment (highest avg price R$201)
-- 📦 Bed/Bath/Table: Volume leader (11,180 items)
-- ⚠️ Bed/Bath/Table has lowest rating (3.90) - quality concerns
+-  Health & Beauty: Best overall (highest revenue + rating)
+-  Watches/Gifts: Premium segment (highest avg price R$201)
+-  Bed/Bath/Table: Volume leader (11,180 items)
+-  Bed/Bath/Table has lowest rating (3.90) - quality concerns
 
 ---
 
 ### 2. Seasonal Category Trends
 
 **Q4 (Holiday Season):**
-- 🎁 Watches & Gifts surge to #1 (Christmas gifting)
-- 🧸 Toys enter top 5
-- 💻 Electronics increase
+-  Watches & Gifts surge to #1 (Christmas gifting)
+-  Toys enter top 5
+-  Electronics increase
 
 **Q2 (Mother's Day):**
-- 💄 Health & Beauty dominates
-- 🏠 Housewares increases
+-  Health & Beauty dominates
+-  Housewares increases
 
 **Q1 (New Year):**
-- 💻 Computer Accessories peaks
-- 🏋️ Sports & Leisure strong
+-  Computer Accessories peaks
+-  Sports & Leisure strong
 
 ---
 
@@ -167,25 +167,25 @@
 **Top Product:** Health & Beauty item (R$ 67,944 revenue, 4.22 rating)
 
 **Premium Products:**
-- 🎸 Musical Instruments: R$ 1,926 avg price (only 13 units sold - huge untapped market!)
-- 💻 Computers: R$ 1,397 avg price (4.57 rating - excellent quality)
+-  Musical Instruments: R$ 1,926 avg price (only 13 units sold - huge untapped market!)
+-  Computers: R$ 1,397 avg price (4.57 rating - excellent quality)
 
 **Warning Products:**
-- 🚗 Auto product: 1.18 rating (urgent quality issue!)
-- 👶 Baby product: 2.68 rating (customer safety concern)
+-  Auto product: 1.18 rating (urgent quality issue!)
+-  Baby product: 2.68 rating (customer safety concern)
 
 ---
 
-## 🚚 Operational Analytics
+##  Operational Analytics
 
 ### 1. Delivery Performance by State
 
 **Best Performers:**
 | State | Orders | Avg Days | On-Time % |
 |-------|--------|----------|-----------|
-| 🥇 RO | 243 | 19.3 | 95.97% |
-| 🥈 AM | 145 | 25.9 | 95.73% |
-| 🥉 PR | 4,923 | 11.5 | 95.21% |
+| RO | 243 | 19.3 | 95.97% |
+| AM | 145 | 25.9 | 95.73% |
+| PR | 4,923 | 11.5 | 95.21% |
 | SP | 40,495 | **8.3** | 94.24% |
 
 **Worst Performers:**
@@ -196,9 +196,9 @@
 | SE | 335 | 21.0 | 83.73% ⚠️ |
 
 **Key Insights:**
-- 🏙️ São Paulo advantage: Fastest delivery (8.3 days) + massive volume (40,495 orders)
-- 🗺️ Northeast struggles: AL, MA, SE all below 85% on-time
-- ⚡ SP vs RJ gap: SP delivers in 8.3 days vs RJ's 14.7 days
+-  São Paulo advantage: Fastest delivery (8.3 days) + massive volume (40,495 orders)
+-  Northeast struggles: AL, MA, SE all below 85% on-time
+-  SP vs RJ gap: SP delivers in 8.3 days vs RJ's 14.7 days
 
 **Actions:**
 - Open fulfillment centers in Northeast Brazil
@@ -244,14 +244,14 @@
 
 ---
 
-## 💳 Payment Analytics
+##  Payment Analytics
 
 | Payment Method | Market Share | Avg Payment | Avg Installments |
 |----------------|--------------|-------------|------------------|
-| 💳 **Credit Card** | **75.63%** | R$ 183 | 3.7x |
-| 📄 Boleto | 20.30% | R$ 178 | 1.0x |
-| 🎫 Voucher | 2.58% | R$ 134 | 2.6x |
-| 💳 Debit Card | 1.50% | R$ 150 | 1.0x |
+|  **Credit Card** | **75.63%** | R$ 183 | 3.7x |
+|  Boleto | 20.30% | R$ 178 | 1.0x |
+|  Voucher | 2.58% | R$ 134 | 2.6x |
+|  Debit Card | 1.50% | R$ 150 | 1.0x |
 
 **Key Insights:**
 - Credit card dominance (75.63%) reflects Brazilian installment culture
@@ -264,7 +264,7 @@
 
 ---
 
-## 🎯 Strategic Recommendations
+##  Strategic Recommendations
 
 ### Priority 1: Fix Customer Retention (Critical)
 **Problem:** 1 order per customer average
@@ -303,7 +303,7 @@
 
 ---
 
-## 📈 Growth Opportunities
+##  Growth Opportunities
 
 ### 1. Untapped Premium Market
 - Musical instruments: Only 13 units sold at R$1,926 avg
@@ -324,16 +324,16 @@
 
 ---
 
-## 🎓 Technical Achievements
+##  Technical Achievements
 
 This analysis demonstrates:
-- ✅ Star schema dimensional modeling
-- ✅ Advanced SQL (CTEs, window functions, complex joins)
-- ✅ RFM segmentation methodology
-- ✅ Cohort analysis techniques
-- ✅ ETL pipeline design
-- ✅ Data quality management (99.95% clean data)
-- ✅ Business intelligence & storytelling
+-  Star schema dimensional modeling
+-  Advanced SQL (CTEs, window functions, complex joins)
+-  RFM segmentation methodology
+-  Cohort analysis techniques
+-  ETL pipeline design
+-  Data quality management (99.95% clean data)
+-  Business intelligence & storytelling
 
 **Technologies Used:**
 - PostgreSQL 18
@@ -343,7 +343,7 @@ This analysis demonstrates:
 
 ---
 
-## 📝 Methodology Notes
+##  Methodology Notes
 
 **Data Quality:**
 - Started with 1,548,331 raw records
@@ -367,7 +367,7 @@ This analysis demonstrates:
 
 ---
 
-## 🏆 Conclusion
+##  Conclusion
 
 This e-commerce platform demonstrates:
 - **Strong foundation:** R$15.87M revenue, 92.10% on-time delivery, 4.04 rating
