@@ -2,7 +2,7 @@
 -- OLIST E-COMMERCE DATA WAREHOUSE & ETL PIPELINE
 -- PART 1: CREATE STAGING TABLES (RAW DATA LAYER)
 -- =====================================================
--- Author: [Your Name]
+-- Author: Jannathul Firdouz
 -- Project: Brazilian E-Commerce Data Warehouse
 -- Purpose: Import raw CSV data into staging tables
 -- =====================================================
@@ -148,22 +148,6 @@ FROM information_schema.tables
 WHERE table_schema = 'staging'
 ORDER BY table_name;
 
--- =====================================================
--- NEXT STEPS:
--- 1. Execute this entire script in pgAdmin
--- 2. Verify all 9 tables are created
--- 3. Then we'll import CSV data using COPY commands
--- =====================================================
-
--- =====================================================
--- OLIST E-COMMERCE DATA WAREHOUSE & ETL PIPELINE
--- PART 2: IMPORT CSV DATA INTO STAGING TABLES
--- =====================================================
--- Purpose: Load raw CSV files into staging tables
--- =====================================================
-
--- Set the file path (UPDATE THIS IF YOUR PATH IS DIFFERENT)
--- Note: Use forward slashes (/) in PostgreSQL, even on Windows
 
 -- =====================================================
 -- IMPORT 1: CUSTOMERS DATA
@@ -175,7 +159,7 @@ COPY staging.customers(
     customer_city,
     customer_state
 )
-FROM 'C:/WorkArea/OneDrive - Mathaniyun Pte Ltd/AUT-FIR/My projects/Brazilian E-Commerce Data Warehouse & ETL Pipeline/Dataset/olist_customers_dataset.csv'
+FROM 'C:/Users\JannathulFirdouz/Downloads/Dataset/olist_customers_dataset.csv'
 DELIMITER ','
 CSV HEADER
 ENCODING 'UTF8';
@@ -196,7 +180,7 @@ COPY staging.orders(
     order_delivered_customer_date,
     order_estimated_delivery_date
 )
-FROM 'C:/WorkArea/OneDrive - Mathaniyun Pte Ltd/AUT-FIR/My projects/Brazilian E-Commerce Data Warehouse & ETL Pipeline/Dataset/olist_orders_dataset.csv'
+FROM 'C:/Users\JannathulFirdouz/Downloads/Dataset/olist_orders_dataset.csv'
 DELIMITER ','
 CSV HEADER
 ENCODING 'UTF8';
@@ -216,7 +200,7 @@ COPY staging.order_items(
     price,
     freight_value
 )
-FROM 'C:/WorkArea/OneDrive - Mathaniyun Pte Ltd/AUT-FIR/My projects/Brazilian E-Commerce Data Warehouse & ETL Pipeline/Dataset/olist_order_items_dataset.csv'
+FROM 'C:/Users\JannathulFirdouz/Downloads/Dataset/olist_order_items_dataset.csv'
 DELIMITER ','
 CSV HEADER
 ENCODING 'UTF8';
@@ -238,7 +222,7 @@ COPY staging.products(
     product_height_cm,
     product_width_cm
 )
-FROM 'C:/WorkArea/OneDrive - Mathaniyun Pte Ltd/AUT-FIR/My projects/Brazilian E-Commerce Data Warehouse & ETL Pipeline/Dataset/olist_products_dataset.csv'
+FROM 'C:/Users\JannathulFirdouz/Downloads/Dataset/olist_products_dataset.csv'
 DELIMITER ','
 CSV HEADER
 ENCODING 'UTF8';
@@ -255,7 +239,7 @@ COPY staging.sellers(
     seller_city,
     seller_state
 )
-FROM 'C:/WorkArea/OneDrive - Mathaniyun Pte Ltd/AUT-FIR/My projects/Brazilian E-Commerce Data Warehouse & ETL Pipeline/Dataset/olist_sellers_dataset.csv'
+FROM 'C:/Users\JannathulFirdouz/Downloads/Dataset/olist_sellers_dataset.csv'
 DELIMITER ','
 CSV HEADER
 ENCODING 'UTF8';
@@ -273,7 +257,7 @@ COPY staging.order_payments(
     payment_installments,
     payment_value
 )
-FROM 'C:/WorkArea/OneDrive - Mathaniyun Pte Ltd/AUT-FIR/My projects/Brazilian E-Commerce Data Warehouse & ETL Pipeline/Dataset/olist_order_payments_dataset.csv'
+FROM 'C:/Users\JannathulFirdouz/Downloads/Dataset/olist_order_payments_dataset.csv'
 DELIMITER ','
 CSV HEADER
 ENCODING 'UTF8';
@@ -293,7 +277,7 @@ COPY staging.order_reviews(
     review_creation_date,
     review_answer_timestamp
 )
-FROM 'C:/WorkArea/OneDrive - Mathaniyun Pte Ltd/AUT-FIR/My projects/Brazilian E-Commerce Data Warehouse & ETL Pipeline/Dataset/olist_order_reviews_dataset.csv'
+FROM C:/Users\JannathulFirdouz/Downloads/Dataset/olist_order_reviews_dataset.csv'
 DELIMITER ','
 CSV HEADER
 ENCODING 'UTF8';
@@ -311,7 +295,7 @@ COPY staging.geolocation(
     geolocation_city,
     geolocation_state
 )
-FROM 'C:/WorkArea/OneDrive - Mathaniyun Pte Ltd/AUT-FIR/My projects/Brazilian E-Commerce Data Warehouse & ETL Pipeline/Dataset/olist_geolocation_dataset.csv'
+FROM 'C:/Users\JannathulFirdouz/Downloads/Dataset/olist_geolocation_dataset.csv'
 DELIMITER ','
 CSV HEADER
 ENCODING 'UTF8';
@@ -326,7 +310,7 @@ COPY staging.product_category_translation(
     product_category_name,
     product_category_name_english
 )
-FROM 'C:/WorkArea/OneDrive - Mathaniyun Pte Ltd/AUT-FIR/My projects/Brazilian E-Commerce Data Warehouse & ETL Pipeline/Dataset/product_category_name_translation.csv'
+FROM 'C:/Users\JannathulFirdouz/Downloads/Dataset/product_category_name_translation.csv'
 DELIMITER ','
 CSV HEADER
 ENCODING 'UTF8';
@@ -357,7 +341,7 @@ SELECT 'product_category_translation', COUNT(*) FROM staging.product_category_tr
 ORDER BY table_name;
 
 -- =====================================================
--- EXPECTED RESULTS (approximately):
+-- RESULTS :
 -- customers: ~99,000 rows
 -- orders: ~99,000 rows
 -- order_items: ~112,000 rows
@@ -367,12 +351,4 @@ ORDER BY table_name;
 -- order_reviews: ~99,000 rows
 -- geolocation: ~1,000,000 rows
 -- product_category_translation: ~71 rows
--- =====================================================
-
--- =====================================================
--- NEXT STEPS:
--- 1. Execute this script in pgAdmin Query Tool
--- 2. Check the row counts match expected numbers
--- 3. If any errors occur, we'll troubleshoot together
--- 4. Then move to Part 3: Data Quality Checks
 -- =====================================================
