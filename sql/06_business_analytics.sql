@@ -12,31 +12,29 @@ SET search_path TO dwh;
 -- SECTION 1: CUSTOMER ANALYTICS
 -- =====================================================
 
--- 1.1 RFM Analysis (Recency, Frequency, Monetary)
--- Segment customers based on purchase behavior
+-- 1.1 RFM Analysis (Recency, Frequency, Monetary) - FIXED v2
 WITH customer_rfm AS (
     SELECT 
         c.customer_key,
         c.customer_id,
         c.state,
-        -- Recency: Days since last purchase
-        DATE_PART('day', CURRENT_DATE - MAX(d.full_date)) as recency_days,
+        -- Recency: Days since last purchase (FIXED)
+        (CURRENT_DATE - MAX(f.purchased_at)::DATE)::INTEGER as recency_days,
         -- Frequency: Number of orders
         COUNT(DISTINCT f.order_id) as frequency,
         -- Monetary: Total spend
         SUM(f.total_item_value) as monetary_value
     FROM dwh.fact_sales f
     JOIN dwh.dim_customers c ON f.customer_key = c.customer_key
-    JOIN dwh.dim_date d ON f.order_date_key = d.date_key
     GROUP BY c.customer_key, c.customer_id, c.state
 ),
 rfm_scores AS (
     SELECT 
         *,
         -- Score 1-5 for each dimension (5 = best)
-        NTILE(5) OVER (ORDER BY recency_days DESC) as r_score,  -- More recent = higher score
-        NTILE(5) OVER (ORDER BY frequency ASC) as f_score,      -- More orders = higher score
-        NTILE(5) OVER (ORDER BY monetary_value ASC) as m_score  -- More spend = higher score
+        NTILE(5) OVER (ORDER BY recency_days DESC) as r_score,
+        NTILE(5) OVER (ORDER BY frequency ASC) as f_score,
+        NTILE(5) OVER (ORDER BY monetary_value ASC) as m_score
     FROM customer_rfm
 )
 SELECT 
@@ -65,7 +63,6 @@ ORDER BY total_segment_revenue DESC;
    ACTION: Focus marketing spend on Champions and At Risk segments
 */
 
-
 -- 1.2 Customer Lifetime Value (CLV) - Top 20
 SELECT 
     c.customer_id,
@@ -75,12 +72,11 @@ SELECT
     COUNT(*) as total_items,
     ROUND(SUM(f.total_item_value), 2) as lifetime_value,
     ROUND(AVG(f.total_item_value), 2) as avg_order_value,
-    MIN(d.full_date) as first_purchase,
-    MAX(d.full_date) as last_purchase,
-    DATE_PART('day', MAX(d.full_date) - MIN(d.full_date)) as customer_tenure_days
+    MIN(f.purchased_at)::DATE as first_purchase,
+    MAX(f.purchased_at)::DATE as last_purchase,
+    (MAX(f.purchased_at)::DATE - MIN(f.purchased_at)::DATE) as customer_tenure_days
 FROM dwh.fact_sales f
 JOIN dwh.dim_customers c ON f.customer_key = c.customer_key
-JOIN dwh.dim_date d ON f.order_date_key = d.date_key
 GROUP BY c.customer_id, c.city, c.state
 ORDER BY lifetime_value DESC
 LIMIT 20;
@@ -93,16 +89,22 @@ LIMIT 20;
 */
 
 
--- 1.3 Customer Acquisition Trend by Month
+-- 1.3 Customer Acquisition Trend by Month (FIXED)
+WITH first_purchase AS (
+    SELECT 
+        c.customer_key,
+        TO_CHAR(MIN(f.purchased_at), 'YYYY-MM') as cohort_month,
+        MIN(f.purchased_at) as first_purchase_date
+    FROM dwh.fact_sales f
+    JOIN dwh.dim_customers c ON f.customer_key = c.customer_key
+    GROUP BY c.customer_key
+)
 SELECT 
-    TO_CHAR(MIN(d.full_date), 'YYYY-MM') as cohort_month,
-    COUNT(DISTINCT c.customer_key) as new_customers,
-    ROUND(AVG(f.total_item_value), 2) as avg_first_order_value,
-    SUM(COUNT(DISTINCT c.customer_key)) OVER (ORDER BY TO_CHAR(MIN(d.full_date), 'YYYY-MM')) as cumulative_customers
-FROM dwh.fact_sales f
-JOIN dwh.dim_customers c ON f.customer_key = c.customer_key
-JOIN dwh.dim_date d ON f.order_date_key = d.date_key
-GROUP BY TO_CHAR(MIN(d.full_date), 'YYYY-MM')
+    cohort_month,
+    COUNT(DISTINCT customer_key) as new_customers,
+    SUM(COUNT(DISTINCT customer_key)) OVER (ORDER BY cohort_month) as cumulative_customers
+FROM first_purchase
+GROUP BY cohort_month
 ORDER BY cohort_month;
 
 /* BUSINESS INSIGHT:
@@ -307,22 +309,29 @@ LIMIT 30;
 
 
 -- 4.2 Review Score Impact on Sales
-SELECT 
-    CASE 
-        WHEN f.review_score >= 5 THEN '5 Stars'
-        WHEN f.review_score >= 4 THEN '4 Stars'
-        WHEN f.review_score >= 3 THEN '3 Stars'
-        WHEN f.review_score >= 2 THEN '2 Stars'
-        WHEN f.review_score >= 1 THEN '1 Star'
-        ELSE 'No Review'
-    END as rating_category,
-    COUNT(*) as order_count,
-    ROUND(AVG(f.unit_price), 2) as avg_price,
-    ROUND(AVG(f.delivery_days), 1) as avg_delivery_days,
-    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER(), 2) as pct_of_orders
-FROM dwh.fact_sales f
+WITH reviews AS (
+    SELECT
+        CASE 
+            WHEN review_score >= 5 THEN '5 Stars'
+            WHEN review_score >= 4 THEN '4 Stars'
+            WHEN review_score >= 3 THEN '3 Stars'
+            WHEN review_score >= 2 THEN '2 Stars'
+            WHEN review_score >= 1 THEN '1 Star'
+            ELSE 'No Review'
+        END AS rating_category,
+        unit_price,
+        delivery_days
+    FROM dwh.fact_sales
+)
+SELECT
+    rating_category,
+    COUNT(*) AS order_count,
+    ROUND(AVG(unit_price), 2) AS avg_price,
+    ROUND(AVG(delivery_days), 1) AS avg_delivery_days,
+    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS pct_of_orders
+FROM reviews
 GROUP BY rating_category
-ORDER BY 
+ORDER BY
     CASE rating_category
         WHEN '5 Stars' THEN 1
         WHEN '4 Stars' THEN 2
@@ -340,19 +349,32 @@ ORDER BY
 
 
 -- 4.3 Product Category Trend Over Time
-SELECT 
-    d.year,
-    d.quarter,
-    p.category_name_en,
-    COUNT(*) as items_sold,
-    ROUND(SUM(f.total_item_value), 2) as revenue,
-    RANK() OVER (PARTITION BY d.year, d.quarter ORDER BY SUM(f.total_item_value) DESC) as category_rank
-FROM dwh.fact_sales f
-JOIN dwh.dim_date d ON f.order_date_key = d.date_key
-JOIN dwh.dim_products p ON f.product_key = p.product_key
-GROUP BY d.year, d.quarter, p.category_name_en
-HAVING RANK() OVER (PARTITION BY d.year, d.quarter ORDER BY SUM(f.total_item_value) DESC) <= 5
-ORDER BY d.year, d.quarter, category_rank;
+WITH category_revenue AS (
+    SELECT 
+        d.year,
+        d.quarter,
+        p.category_name_en,
+        COUNT(*) AS items_sold,
+        ROUND(SUM(f.total_item_value), 2) AS revenue
+    FROM dwh.fact_sales f
+    JOIN dwh.dim_date d ON f.order_date_key = d.date_key
+    JOIN dwh.dim_products p ON f.product_key = p.product_key
+    GROUP BY d.year, d.quarter, p.category_name_en
+),
+ranked_categories AS (
+    SELECT
+        *,
+        RANK() OVER (
+            PARTITION BY year, quarter
+            ORDER BY revenue DESC
+        ) AS category_rank
+    FROM category_revenue
+)
+SELECT *
+FROM ranked_categories
+WHERE category_rank <= 5
+ORDER BY year, quarter, category_rank;
+
 
 /* BUSINESS INSIGHT:
    - Top 5 categories per quarter
