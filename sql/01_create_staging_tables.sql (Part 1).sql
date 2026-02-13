@@ -2,7 +2,7 @@
 -- OLIST E-COMMERCE DATA WAREHOUSE & ETL PIPELINE
 -- PART 1: CREATE STAGING TABLES (RAW DATA LAYER)
 -- =====================================================
--- Author: [Your Name]
+-- Author: Jannathul Firdouz
 -- Project: Brazilian E-Commerce Data Warehouse
 -- Purpose: Import raw CSV data into staging tables
 -- =====================================================
@@ -148,9 +148,3 @@ FROM information_schema.tables
 WHERE table_schema = 'staging'
 ORDER BY table_name;
 
--- =====================================================
--- NEXT STEPS:
--- 1. Execute this entire script in pgAdmin
--- 2. Verify all 9 tables are created
--- 3. Then we'll import CSV data using COPY commands
--- =====================================================

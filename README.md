@@ -133,14 +133,15 @@ Implemented enterprise-grade **Star Schema** for optimal analytical performance:
 - On-time delivery rate: 91.89%
 - Active customer base: 98,666 unique customers
 - Product catalog: 32,951 active SKUs
-### Phase 5: Business Analytics (Planned )
+### Phase 5: Business Analytics
+- 12+ analytical queries
 - Customer segmentation (RFM analysis)
 - Sales trend analysis
 - Product performance metrics
 - Seller analytics
 - Delivery performance tracking
 
-##  Business Insights (Coming Soon)
+##  Business Insights 
 - Geographic distribution of customers
 - Top performing product categories
 - Payment method preferences
@@ -189,7 +190,7 @@ CREATE DATABASE olist_ecommerce;
 - [x] Phase 2: Data Quality Assessment (99.95% data quality)
 - [x] Phase 3: Data Cleaning & Transformation (823 invalid records removed)
 - [x] Phase 4: Data Warehouse Design (Star Schema - 5 dimensions + 1 fact)
-- [ ] Phase 5: Business Analytics & Insights
+- [x] Phase 5: Business Analytics & Insights
 - [ ] Phase 6: Visualization & Final Documentation
 
 ##  Skills Demonstrated
