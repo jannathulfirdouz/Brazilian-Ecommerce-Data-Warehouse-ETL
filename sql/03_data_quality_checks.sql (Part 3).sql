@@ -307,7 +307,7 @@ ORDER BY table_name, column_name;
 -- - null_percentage > 20%: Serious issue, investigate why
 -- =====================================================
 
--- Export this result to update your README.md with actual numbers!
+--
 -- =====================================================
 -- SECTION 2: DUPLICATE ANALYSIS
 -- =====================================================
@@ -329,7 +329,7 @@ Result: No rows returned
 
 Meaning: There are no duplicate customer_id values in the staging.customers table
 
-Assessment: ✅ Data quality passed
+Assessment:  Data quality passed
 customer_id can be safely treated as a primary key
 */
 
@@ -349,7 +349,7 @@ Result: No rows returned
 
 Meaning: There are no duplicate order_id values in the staging.orders table
 
-Assessment: ✅ Data quality passed
+Assessment:  Data quality passed
 order_id functions as a true primary key
 */
 
@@ -375,7 +375,7 @@ Meaning: A single customer_unique_id is associated with multiple distinct custom
 
 Observed Range: Up to 17 different customer_ids for one customer_unique_id
 
-Assessment: 🟡 Expected behavior, not a data error
+Assessment:  Expected behavior, not a data error
 */
 
 
@@ -400,7 +400,7 @@ Result: orphan_orders_count = 0
 
 Meaning: Every order in staging.orders has a valid matching customer in staging.customers
 
-Assessment: ✅ Referential integrity passed
+Assessment:  Referential integrity passed
 */
 
 -- 3.2 Order items without matching orders (orphan items)
@@ -417,7 +417,7 @@ Result: orphan_items_count = 0
 
 Meaning: Every record in staging.order_items is linked to a valid parent order in staging.orders
 
-Assessment: ✅ Referential integrity passed
+Assessment:  Referential integrity passed
    - Should be 0
    - Items sold without parent order = problem
    
@@ -437,7 +437,7 @@ Result: items_with_missing_products = 0
 
 Meaning: Every order item references a valid product in staging.products
 
-Assessment: ✅ Referential integrity passed'
+Assessment:  Referential integrity passed'
 No products were sold without existing product records
    - Products sold but not in catalog
    - Might be deleted/discontinued products
@@ -496,7 +496,7 @@ Zero Prices = 0
 
 Meaning: All monetary values in staging.order_items are strictly positive and valid
 
-Assessment: ✅ Data quality passed
+Assessment:  Data quality passed
 */
 
 -- 4.2 Check for invalid order statuses
@@ -517,7 +517,7 @@ shipped, canceled, unavailable, invoiced, processing — low percentages, normal
 
 created and approved — extremely rare, likely incomplete or test records
 
-Assessment: 🟢 Mostly clean, but edge statuses should be reviewed if needed for analytics
+Assessment:  Mostly clean, but edge statuses should be reviewed if needed for analytics
 */
 
 -- 4.3 Check for future order dates (impossible timestamps)
@@ -668,9 +668,4 @@ ORDER BY payment_count DESC;
 -- 3. Orphan records needing resolution
 -- 4. Invalid values requiring correction
 -- 5. Completeness gaps needing imputation
---
--- NEXT STEPS:
--- - Review all query results
--- - Document findings in a separate report
--- - Create data cleaning strategy (Part 4)
 -- =====================================================
