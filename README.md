@@ -203,8 +203,8 @@ Interactive Power BI dashboards available showcasing:
 - Product category analytics
 
 **View Dashboards:**
-- [Executive Summary](./screenshots/executive_dashboard.png)
-- [Customer & Operations](./screenshots/customer_operations_dashboard.png)
+- [Executive Summary](./screenshots/Executive_dashboard.png)
+- [Customer & Operations](./screenshots/Customer_operations_dashboard.png)
 
 ##  How to Run This Project
 
