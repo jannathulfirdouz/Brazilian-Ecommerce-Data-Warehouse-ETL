@@ -148,6 +148,18 @@ Implemented enterprise-grade **Star Schema** for optimal analytical performance:
 - Seasonal sales patterns
 - Customer lifetime value analysis
 
+##  Visualizations
+
+Interactive Power BI dashboards available showcasing:
+- Executive KPIs and revenue trends
+- Customer segmentation analysis (RFM)
+- Geographic delivery performance
+- Product category analytics
+
+**View Dashboards:**
+- [Executive Summary](./screenshots/executive_dashboard.png)
+- [Customer & Operations](./screenshots/customer_operations_dashboard.png)
+
 ##  How to Run This Project
 
 ### Prerequisites
@@ -191,7 +203,7 @@ CREATE DATABASE olist_ecommerce;
 - [x] Phase 3: Data Cleaning & Transformation (823 invalid records removed)
 - [x] Phase 4: Data Warehouse Design (Star Schema - 5 dimensions + 1 fact)
 - [x] Phase 5: Business Analytics & Insights
-- [ ] Phase 6: Visualization & Final Documentation
+- [x] Phase 6: Visualization & Final Documentation
 
 ##  Skills Demonstrated
 - **SQL Proficiency:** Complex queries, CTEs, window functions, aggregations
