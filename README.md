@@ -8,6 +8,7 @@ Build a scalable data warehouse solution to analyze customer behavior, sales tre
 
 ##  Technologies Used
 - **Database:** PostgreSQL 18
+- **Visualization:** Power BI Desktop
 - **ETL Tools:** SQL (COPY commands, custom transformations)
 - **Version Control:** Git & GitHub
 - **Data Volume:** 1.5M+ records across 9 tables
@@ -84,10 +85,11 @@ Comprehensive quality checks performed across 1.5M+ records:
 **Verdict:** Dataset is exceptionally clean with minimal cleaning required.
 
 ### Phase 3: Data Cleaning & Transformation
-- Handle NULL values (imputation strategies)
-- Remove duplicates
-- Standardize data formats
-- Create business rules for data validation
+-Handled NULL values with intelligent imputation strategies
+-Standardized data formats (uppercase, trimming)
+-Removed 823 invalid records (0.05% of dataset)
+-Created derived business attributes
+-Final retention rate: 99.95%
 
 ### Phase 4: Data Warehouse Design 
 
@@ -135,13 +137,51 @@ Implemented enterprise-grade **Star Schema** for optimal analytical performance:
 - On-time delivery rate: 91.89%
 - Active customer base: 98,666 unique customers
 - Product catalog: 32,951 active SKUs
-### Phase 5: Business Analytics
-- 12+ analytical queries
-- Customer segmentation (RFM analysis)
-- Sales trend analysis
-- Product performance metrics
-- Seller analytics
-- Delivery performance tracking
+  
+# Phase 5: Business Analytics
+This phase involved generating 12+ analytical queries to answer key business questions across multiple domains.
+---
+## Customer Analytics
+
+- RFM segmentation (Champions, Loyal, At Risk, Lost)  
+- Customer Lifetime Value analysis  
+- Customer acquisition trends  
+
+---
+## Revenue Analytics
+
+- Monthly revenue trends (including a 53% Black Friday spike)  
+- Top product categories by revenue  
+- Day of week sales patterns  
+
+---
+
+## Operational Analytics
+
+- Delivery performance by state  
+- Seller performance rankings  
+- Payment method preferences  
+
+---
+
+## Product Analytics
+
+- Best-selling products analysis  
+- Review score impact on sales  
+- Seasonal category trends  
+
+---
+
+## Key Findings
+
+- 34.7% of revenue comes from **“At Risk” customers** — retention should be a priority  
+- Delivery time strongly correlates with review scores (10 days → 5 stars, 19 days → 1 star)  
+- São Paulo delivers 86% faster than other states  
+- Credit card is the dominant payment method (75.63%) with an average of 3.7 installments  
+
+---
+
+For complete business analysis and detailed insights, see the [INSIGHTS.md](INSIGHTS.md) file.
 
 ##  Business Insights 
 - Geographic distribution of customers
@@ -168,6 +208,7 @@ Interactive Power BI dashboards available showcasing:
 - PostgreSQL 12+ installed
 - pgAdmin 4 or any PostgreSQL client
 - Git (for cloning repository)
+- Power BI Desktop (optional, for viewing dashboards)
 
 ### Setup Instructions
 
@@ -192,42 +233,68 @@ CREATE DATABASE olist_ecommerce;
 01_create_staging_tables.sql
 02_import_csv_data.sql
 03_data_quality_checks.sql
+04_data_cleaning_transformation.sql
+05_create_data_warehouse.sql
+06_business_analytics.sql
 ```
 
 5. **Update file paths:**
    - Edit `02_import_csv_data.sql`
    - Update CSV file paths to match your local directory
 
-##  Project Status
+## View results:
 
-- [x] Phase 1: Data Ingestion (1.5M records imported)
-- [x] Phase 2: Data Quality Assessment (99.95% data quality)
-- [x] Phase 3: Data Cleaning & Transformation (823 invalid records removed)
-- [x] Phase 4: Data Warehouse Design (Star Schema - 5 dimensions + 1 fact)
-- [x] Phase 5: Business Analytics & Insights
-- [x] Phase 6: Visualization & Final Documentation
+ - Run analytical queries from 06_business_analytics.sql
+ - View Power BI dashboards in screenshots/ folder
+ - Read business insights in INSIGHTS.md
 
-##  Skills Demonstrated
-- **SQL Proficiency:** Complex queries, CTEs, window functions, aggregations
-- **Data Quality:** Comprehensive validation and cleansing strategies
-- **ETL Design:** Staging layer, transformation logic, error handling
-- **Data Modeling:** Dimensional modeling, star schema design
-- **Problem Solving:** Handling real-world messy data
-- **Documentation:** Clear code comments and project documentation
+#  Skills Demonstrated
 
-##  Future Enhancements
-- [ ] Implement stored procedures for automation
-- [ ] Create views for business users
-- [ ] Add incremental data loading
-- [ ] Build Tableau/PowerBI dashboards
-- [ ] Implement data lineage tracking
-- [ ] Add unit tests for transformations
+- **SQL Proficiency:** Complex queries, CTEs, window functions, aggregations, joins  
+- **Data Quality:** Comprehensive validation and cleansing strategies (99.95% quality)  
+- **ETL Design:** Three-layer architecture (staging → cleaned → data warehouse)  
+- **Data Modeling:** Dimensional modeling, star schema design, SCD Type 2  
+- **Business Intelligence:** RFM segmentation, cohort analysis, trend analysis  
+- **Visualization:** Power BI dashboard creation and design  
+- **Problem Solving:** Handling real-world messy data  
+- **Documentation:** Clear code comments, architecture diagrams, business insights  
+- **Version Control:** Git workflow, professional GitHub repository  
+
+---
+
+
+# 💡 Key Project Highlights
+
+### Scale
+- 1.5M+ records processed  
+- R$ 15.87M revenue analyzed  
+- 98,666 unique customers  
+- 112,960 transactions in fact table  
+
+### Quality
+- 99.95% data retention rate  
+- Zero duplicate or orphan records  
+- 100% referential integrity  
+- Comprehensive validation rules  
+
+### Performance
+- Star schema optimized for analytics  
+- Indexed foreign keys for fast queries  
+- Efficient ETL pipeline design  
+- Query response time < 1 second  
+
+### Business Value
+- 6 strategic recommendations with ROI projections  
+- Identified R$5.5M "At Risk" customer segment  
+- Discovered 87% delivery time correlation with ratings  
+- Revealed 53% Black Friday revenue spike opportunity  
+
 
 ##  Author
 **Jannathul Firdouz Sahul Hameed**
 - GitHub: [@jannathulfirdouz](https://github.com/jannathulfirdouz)
-- LinkedIn: [Add your LinkedIn]
-- Email: [Add your email]
+- LinkedIn:(https://www.linkedin.com/in/jannathul-firdouz-58298b321)
+- Email: jannathul.firdouz@icloud.com
 
 ##  License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
