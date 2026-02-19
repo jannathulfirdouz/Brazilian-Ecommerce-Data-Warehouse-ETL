@@ -14,7 +14,8 @@ Build a scalable data warehouse solution to analyze customer behavior, sales tre
 - **Data Volume:** 1.5M+ records across 9 tables
 - **Dataset Source:** [Olist Brazilian E-Commerce Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
-## Project Structure
+## 📁 Project Structure
+```
 Brazilian-Ecommerce-Data-Warehouse-ETL/
 ├── README.md                              # Project documentation
 ├── INSIGHTS.md                            # Business insights summary
@@ -31,8 +32,9 @@ Brazilian-Ecommerce-Data-Warehouse-ETL/
 ├── screenshots/                           # Dashboard visualizations
 │   ├── Executive_dashboard.png            # Executive KPI dashboard
 │   └── Customer_operations_dashboard.png  # Customer analytics dashboard
+├── Dashboard_Screenshots.pdf              # Dashboard export
 └── Dataset/                               # Raw CSV files (9 files)
-
+```
 
 ##  Dataset Overview
 The Olist dataset contains real Brazilian e-commerce data with:
