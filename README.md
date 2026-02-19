@@ -13,21 +13,23 @@ Build a scalable data warehouse solution to analyze customer behavior, sales tre
 - **Data Volume:** 1.5M+ records across 9 tables
 - **Dataset Source:** [Olist Brazilian E-Commerce Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
-##  Project Structure
-```
 Brazilian-Ecommerce-Data-Warehouse-ETL/
-├── README.md                          # Project documentation
-├── sql/                               # SQL scripts
-│   ├── 01_create_staging_tables.sql   # Staging layer setup
-│   ├── 02_import_csv_data.sql         # Data ingestion
-│   ├── 03_data_quality_checks.sql     # Quality validation
-│   ├── 04_data_cleaning.sql           # (Coming soon)
-│   ├── 05_create_data_warehouse.sql   # (Coming soon)
-│   └── 06_analysis_queries.sql        # (Coming soon)
-├── docs/                              # Documentation & diagrams
-├── screenshots/                       # Query results & visualizations
-└── Dataset/                           # Raw CSV files (9 files)
-```
+├── README.md                              # Project documentation
+├── INSIGHTS.md                            # Business insights summary
+├── sql/                                   # SQL scripts
+│   ├── 01_create_staging_tables.sql       # Staging layer setup
+│   ├── 02_import_csv_data.sql             # Data ingestion
+│   ├── 03_data_quality_checks.sql         # Quality validation
+│   ├── 04_data_cleaning_transformation.sql # Data cleaning & ETL
+│   ├── 05_create_data_warehouse.sql       # Star schema implementation
+│   └── 06_business_analytics.sql          # Advanced analytics queries
+├── docs/                                  # Documentation & diagrams
+│   ├── architecture.md                    # Star schema architecture
+│   └── star_schema_er_diagram.md          # ER diagram
+├── screenshots/                           # Dashboard visualizations
+│   ├── Executive_dashboard.png            # Executive KPI dashboard
+│   └── Customer_operations_dashboard.png  # Customer analytics dashboard
+└── Dataset/                               # Raw CSV files (9 files)
 
 ##  Dataset Overview
 The Olist dataset contains real Brazilian e-commerce data with:
